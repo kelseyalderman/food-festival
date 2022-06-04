@@ -1,9 +1,18 @@
-const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+// require packages
 const path = require("path");
 const webpack = require("webpack");
+const BundleAnalyzerPlugin =
+  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const WebpackPwaManifest = require("webpack-pwa-manifest");
 
-module.exports = {
+// main configuration options object
+//============================================================
+// Must contain entry, output, mode.  the rest are optional
+// entry point is the root of the bundle/beginning of the dependency graph
+// output the bundled code to the folder we specify
+// mode in which we want webpack to run (development or production)
+// plugins - directions on how to operate
+const config = {
   entry: {
     app: "./assets/js/script.js",
     events: "./assets/js/events.js",
@@ -17,7 +26,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jpg$/i,
+        test: /\.(jpg|png|jpe?g|gif)$/i,
         use: [
           {
             loader: "file-loader",
@@ -26,7 +35,7 @@ module.exports = {
               name(file) {
                 return "[path][name].[ext]";
               },
-              publicPath: function (url) {
+              publicPath(url) {
                 return url.replace("../", "/assets/");
               },
             },
@@ -44,7 +53,7 @@ module.exports = {
       jQuery: "jquery",
     }),
     new BundleAnalyzerPlugin({
-      analyzerMode: "static", // the report outputs to an HTML file in the dist folder
+      analyzerMode: "static",
     }),
     new WebpackPwaManifest({
       name: "Food Event",
@@ -66,3 +75,5 @@ module.exports = {
   ],
   mode: "development",
 };
+
+module.exports = config;

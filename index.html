@@ -11,7 +11,7 @@
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <link rel="manifest" href="./dist/manifest.json" />
+    <link rel="manifest" href="dist/manifest.json">
 
     <script src="./dist/app.bundle.js" defer></script>
   </head>
@@ -73,7 +73,13 @@
             style="background-image: url('assets/img/chips.jpg')"
           >
             <div
-              class="d-flex h-100 align-items-center justify-content-center carousel-caption"
+              class="
+                d-flex
+                h-100
+                align-items-center
+                justify-content-center
+                carousel-caption
+              "
             >
               <div class="container">
                 <div class="row align-items-center justify-content-center">
@@ -229,6 +235,7 @@
       </div>
     </footer>
   </body>
+  <!-- add script for service worker -->
   <script>
     (function () {
       if ("serviceWorker" in navigator) {
